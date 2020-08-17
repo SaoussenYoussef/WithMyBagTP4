@@ -1,7 +1,6 @@
 package com.example.withmybag.outils;
 
 import android.content.Context;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -16,7 +15,7 @@ import java.io.ObjectOutputStream;
 public abstract class Serializer {
 
     /**
-     * Serialisation d'un objet
+     * Serialisation d'un objet : mémoriser un objet dans un fichier binaire
      * @param filename: dans  ce fichier on serilaise l'objet "object"
      * @param object  : l'objet à sérilaiser
      * @param context : il s'agit de  l'activity en cours
@@ -51,6 +50,13 @@ public abstract class Serializer {
 
     }
 
+    /**
+     * Permet de récupérer un Objet à partir d'un fichier binaire
+     * précedemment sérilaisé
+     * @param filename
+     * @param context
+     * @return
+     */
     public static Object deSerialize(String filename, Context context){
 
 

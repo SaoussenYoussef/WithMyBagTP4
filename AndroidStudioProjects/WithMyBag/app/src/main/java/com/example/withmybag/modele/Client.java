@@ -1,8 +1,14 @@
 package com.example.withmybag.modele;
 
-import android.media.Image;
 
-public class Client {
+
+import android.content.Context;
+
+import com.example.withmybag.outils.Serializer;
+
+import java.io.Serializable;
+
+public class Client implements Serializable {
 
     // propriétés
     private String name; // nom du client
@@ -32,9 +38,7 @@ public class Client {
         return phone;
     }
 
-    public String getMsg() {
-        return msg;
-    }
+
 
     private void affichMessage(){
 
@@ -45,4 +49,10 @@ public class Client {
             msg = "Veuillez vous inscrire, " ;
         }
     }
+
+    public String getMsg() {
+        return msg;
+    }
+
+
 }

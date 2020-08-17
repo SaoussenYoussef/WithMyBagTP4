@@ -35,6 +35,10 @@ public class MainActivity extends AppCompatActivity {
 
     private Controle controle;
 
+    private TextView txtClientName;
+    private TextView txtClientPhone;
+    private TextView txtClientEmail;
+
     /*String name = ""; // nom du client
     String email = ""; // emal du client
     String phone =""; // numero de telephone*/
@@ -47,11 +51,16 @@ public class MainActivity extends AppCompatActivity {
         edTxtName = findViewById(R.id.edTxtName);
         edTxtEmail = findViewById(R.id.edTxtEmail) ;
         edTxtPhone = findViewById(R.id.edTxtPhone);
-
         txtViewWelcomeTxt = findViewById(R.id.txtViewWelcomeTxt);
         imgSmiley = findViewById(R.id.imgSmiley);
-        this.controle = Controle.getInstance();
+
+        txtClientName=findViewById(R.id.txtClientName);
+        txtClientPhone=findViewById(R.id.txtClientPhone);
+        txtClientEmail=findViewById(R.id.txtClientEmail);
+
+        this.controle = Controle.getInstance(this);
         ecouteConnexion();
+        recupClient();
 
     }
 
@@ -111,9 +120,9 @@ public class MainActivity extends AppCompatActivity {
      */
     private void afficheInfosClient(String name, String email, String phone){
 
-        // création du client  potenteil et récupération des
+        // création du client  potentiel et récupération des
         // informations qu'il vient de saisir
-        this.controle.creerClient(name, email, phone);
+        this.controle.creerClient(name, email, phone,this);
 
         name = this.controle.getName();
         email = this.controle.getEmail();
@@ -128,6 +137,35 @@ public class MainActivity extends AppCompatActivity {
                 imgSmiley.setImageResource(R.drawable.erreurinconnu);
                 txtViewWelcomeTxt.setText(message + "" + name);
         }
+
+    }
+
+    /**
+     * Récupération des inFos du client s'il a été sérailisé au préalable
+     */
+    private void  recupClient(){
+
+        /*
+        *On teste si n'importe quelle propriété de l'objet client est null cela veut dire
+        * que nous n'avons pas encore enregsitré de clients
+        * Sinon on inject dans les objets txt les valeurs de la saisie de l'utilisateur (Cleint)
+         */
+
+        if(controle.getName() != null) {
+            edTxtEmail.setText(controle.getEmail().toString());
+            edTxtName.setText(controle.getName().toString());
+            edTxtPhone.setText(controle.getPhone().toString());
+            txtViewWelcomeTxt.setText(controle.getMessage());
+
+            txtClientName.setText(controle.getName().toString());
+            txtClientPhone.setText(controle.getPhone().toString());
+            txtClientEmail.setText(controle.getEmail().toString());
+        }
+
+        // simule le click sur le bouton connexion
+        // afin d'afficher les infos mémorisées du client grâce à la sérialisation
+
+        findViewById(R.id.BtnConnexion).performClick();
 
     }
 

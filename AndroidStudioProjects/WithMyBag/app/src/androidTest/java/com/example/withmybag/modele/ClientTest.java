@@ -6,7 +6,7 @@ import static junit.framework.TestCase.assertEquals;
 
 public class ClientTest {
 
-    private Client client = new Client("Dupon", "dupont@gmail.com", 123456789 );
+    private Client client = new Client("Dupon", "dupont@gmail.com", "123456789" );
 
     // message a afficher
     private String  message = "Hello";
